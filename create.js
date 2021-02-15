@@ -11,7 +11,7 @@ record.push(6);
 console.log(record);
 
 //post to backend
-function record(name) {
+function create(name) {
 	fetch("", {
 		method: "POST",
 		headers: {
@@ -26,10 +26,12 @@ function record(name) {
 		.catch((error) => console.log("error", error));
 }
 
+let form = document.getElementById("submitButton");
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   //id = someUniqueID
   author = form.elements["name"].value;
   form.elements["name"].value = "";
-  record(name);
+  create(name);
 });
