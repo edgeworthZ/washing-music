@@ -36,7 +36,7 @@ function AnimateText(){
 		opacity: 0,
 		duration: 500,
 		easing: "easeOutExpo",
-		delay: 1000
+		delay: 2000
 	  });
 }
 
@@ -56,7 +56,7 @@ function AddCustomEventListener() {
 			
 			$(".btn:first-child").text($(this).text());
 			 $(".btn:first-child").val($(this).text());
-			 document.getElementById("musicName").innerHTML = "Music Name: " + $(this).text();
+			 document.getElementById("musicName").innerHTML = "Playing: " + $(this).text();
 		  });
 		});
 		
@@ -68,5 +68,3 @@ function AddCustomEventListener() {
 }
     
 setTimeout(function(){AddCustomEventListener()}, 1000); // 1 second delay for fetching
-
-
