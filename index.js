@@ -14,7 +14,6 @@ window.addEventListener('load', (event) => {
 			var doc =  document.getElementById("musicList");
 			var newMusic = document.createElement("li");
 			//newMusic.id = 'div_id';
-			//Add your content to the DIV
 			newMusic.innerHTML = '<a href="#" onclick="return false;">'+data.name+'</a>';
 			doc.appendChild(newMusic);
 		  });
@@ -23,7 +22,7 @@ window.addEventListener('load', (event) => {
 
 function AddCustomEventListener() {
 	(function ($) {
-		"use strict"; // Start of use strict
+		"use strict";
 		// Change text when select an item from dropdown-menu
 		$(function(){
 		  $(".dropdown-menu li a").click(function(){
@@ -37,7 +36,7 @@ function AddCustomEventListener() {
 		$(function(){
 			
 		});
-	})(jQuery); // End of use strict
+	})(jQuery);
 	
 }
     
