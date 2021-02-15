@@ -1,6 +1,5 @@
-window.addEventListener('load', (event) => {
-  console.log('page is fully loaded');
-  fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/record-samples.json")
+function GetMusicFromJSON(){
+	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/record-samples.json")
 		.then(response => response.json())
 		.then((datas) => {
 			
@@ -18,6 +17,34 @@ window.addEventListener('load', (event) => {
 			doc.appendChild(newMusic);
 		  });
         });
+}
+
+function AnimateText(){
+	// Wrap every letter in a span
+	var textWrapper = document.querySelector('.anim1 .letters');
+	textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+	anime.timeline({loop: true})
+	  .add({
+		targets: '.anim1 .letter',
+		translateY: ["1.1em", 0],
+		translateZ: 0,
+		duration: 1500,
+		delay: (el, i) => 50 * i
+	  }).add({
+		targets: '.anim1',
+		opacity: 0,
+		duration: 500,
+		easing: "easeOutExpo",
+		delay: 1000
+	  });
+}
+
+
+window.addEventListener('load', (event) => {
+	console.log('page is fully loaded');
+	GetMusicFromJSON();
+	AnimateText();
 });
 
 function AddCustomEventListener() {
@@ -41,3 +68,5 @@ function AddCustomEventListener() {
 }
     
 setTimeout(function(){AddCustomEventListener()}, 1000); // 1 second delay for fetching
+
+

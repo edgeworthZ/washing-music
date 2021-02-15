@@ -29,3 +29,23 @@ header.mycontent .mycontent-heading {
     background-image: none;
     background-color: grey;
 }
+
+.anim1 {
+  position: relative;
+  font-weight: 900;
+  font-size: 3.3em;
+}
+
+.anim1 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.anim1 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
