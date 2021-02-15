@@ -11,7 +11,7 @@ record.push(6);
 console.log(record);
 
 //post to backend
-function record(id, name) {
+function record(name) {
 	fetch("", {
 		method: "POST",
 		headers: {
@@ -19,7 +19,7 @@ function record(id, name) {
 		  // "Access-Control-Allow-Credentials": true,
 		  "Content-Type": "application/json",
 		},
-		body: JSON.stringify({ id: id, name: name, value: record }),
+		body: JSON.stringify({ name: name, value: record }),
 	  })
 		.then((response) => response.text())
 		.then((result) => console.log(result))
@@ -31,5 +31,5 @@ form.addEventListener("submit", (event) => {
   //id = someUniqueID
   author = form.elements["name"].value;
   form.elements["name"].value = "";
-  record(id, name);
+  record(name);
 });
