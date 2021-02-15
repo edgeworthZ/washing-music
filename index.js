@@ -14,7 +14,7 @@ window.addEventListener('load', (event) => {
 			var doc =  document.getElementById("musicList");
 			var newMusic = document.createElement("li");
 			//newMusic.id = 'div_id';
-			newMusic.innerHTML = '<a href="#" onclick="return false;">'+data.name+'</a>';
+			newMusic.innerHTML = '<a class="dropdown-item" href="#">'+data.name+'</a>';
 			doc.appendChild(newMusic);
 		  });
         });
