@@ -1,13 +1,14 @@
 let record = [];
 
 //record algorithm
-record.push(0);
-record.push(1);
-record.push(2);
-record.push(3);
-record.push(4);
-record.push(5);
-record.push(6);
+record.push('E');
+record.push('D');
+record.push('C');
+record.push('E');
+record.push('C');
+record.push('C');
+record.push('E');
+record.push('D');
 console.log(record);
 
 //post to backend
