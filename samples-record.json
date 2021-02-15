@@ -1,4 +1,8 @@
 [{
+    "name" : "Default",
+    "val": ["E","E","E","E","D","D","D","D"]
+},
+{
     "name" : "Music#1",
     "val": ["E","D","C","E","D","C","E","E"]
 },
