@@ -57,7 +57,7 @@ window.addEventListener('load', (event) => {
 	AnimateText();
 });
 
-/*Dropdown Click Event*/
+/*Events Listener*/
 function AddCustomEventListener() {
 	(function ($) {
 		"use strict";
@@ -88,6 +88,13 @@ function AddCustomEventListener() {
     
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
+/*Preview Note*/
+function PlaySingleNote(note){
+    var audio = document.getElementById(note);
+    audio.currentTime = 0;
+    audio.play();
+}
+
 /*TypeWriterEffects*/
 
 var captionLength1 = 0;
@@ -98,6 +105,17 @@ $(document).ready(function() {
     msEl1 = $('#musicName');
 	msEl2 = $('#musicNotes');
     /*$('#test-typing').click(function(){ MusicNameTypingEffect("Test"); });*/
+	$('#preview').click(function(){
+		var rawText = currentMusic.join(" "); //reset notes
+		currentMusic.forEach((note, i) => { // get single note from array
+			setTimeout(function(){
+				console.log("Playing Note: "+note);
+				PlaySingleNote(note.toLowerCase());
+				// change note's color while playing (each note uses 3 chars)
+				msEl2.html('<span style="color: #ff0000">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length));
+			}, i * 500); // i is needed for proper foreach delay
+		});
+	});
 });
 
 function MusicNameTypingEffect(text) {
