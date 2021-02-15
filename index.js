@@ -1,6 +1,6 @@
 window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
-  fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/record_sample.json")
+  fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/record_samples.json")
 		.then(response => response.json())
 		.then((datas) => {
 			
