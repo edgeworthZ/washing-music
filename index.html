@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Website Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+<!--Content-->
+<header class="mycontent">
+	<div class="mycontent-subheading">Project Name</div>
+    <div class="mycontent-heading text-uppercase">Hello World</div>
+	<div class="mycontent-subheading">Pick a Music</div>
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Default
+		<span class="caret"></span></button>
+		<ul class="dropdown-menu" id="musicList">
+			<li><a href="#" onclick="return false;">Default</a></li>
+			<!--<li><a href="#" onclick="return false;">Record#1</a></li>-->
+			<!--<li><a href="#" onclick="return false;">Record#2</a></li>-->
+		</ul>
+	</div><br></br>
+	<h2 class="mycontent-heading text-uppercase" id="musicName">Music Name: Default</h2>			
+	<button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Create New</button>
+</header>
+<!--Footer-->
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Made by Opensource</p>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
