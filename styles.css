@@ -49,14 +49,3 @@ header.mycontent .mycontent-heading {
   display: inline-block;
   line-height: 1em;
 }
-
-
-.console
-{
-  font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
-}
-
-input[type="button"]
-{
-  cursor: pointer;
-}
