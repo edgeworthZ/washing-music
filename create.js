@@ -32,7 +32,7 @@ let form = document.getElementById("submitButton");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   //id = someUniqueID
-  author = form.elements["name"].value;
+  name = form.elements["name"].value;
   form.elements["name"].value = "";
   create(name);
 });
