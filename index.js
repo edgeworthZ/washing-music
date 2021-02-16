@@ -3,7 +3,7 @@ var jsonMusic; // musics from JSON
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
-	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/samples-record-v2.json")
+	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/samples-record-v3.json")
 		.then(response => response.json())
 		.then((datas) => {
 			jsonMusic = datas;
