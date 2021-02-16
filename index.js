@@ -32,7 +32,6 @@ function AnimateText(){
 	// Wrap every letter in a span
 	var textWrapper = document.querySelector('.anim1 .letters');
 	textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
 	anime.timeline({loop: true})
 	  .add({
 		targets: '.anim1 .letter',
@@ -59,41 +58,56 @@ window.addEventListener('load', (event) => {
 
 /*Events Listener*/
 function AddCustomEventListener() {
-	(function ($) {
-		"use strict";
-		// Select a music from dropdown-menu
-		$(function(){
-		  $(".dropdown-menu li a").click(function(){
-			$(".btn:first-child").text($(this).text());
-			 $(".btn:first-child").val($(this).text());
-			//document.getElementById("musicName").innerHTML = "Playing: " + $(this).text(); // set text without animation
+	var elements = document.getElementsByClassName('dropdown-item');
+		Array.from(elements).forEach((element) => {
+		  element.addEventListener('click', (event) => {
+			//alert(`Clicked ${event.target.innerText}!`);
+			var label = document.getElementById('dropLabel');
+			var musicName = event.target.innerText;
+			label.innerHTML = musicName;
 			for(var i=0; i<jsonMusic.length;i++) {
 				var obj = jsonMusic[i];
-				if(obj.name == $(this).text()){
+				if(obj.name == musicName){
 					console.log("Choose Music: "+obj.name+" Notes: "+obj.val);
 					currentMusic = obj.val;
 				}
 			}
-			MusicNameTypingEffect($(this).text()); 
+			MusicNameTypingEffect(musicName); 
 			MusicNotesTypingEffect(currentMusic.join(" ")); 
 		  });
 		});
-		
-		$(function(){
-			
-		});
-	})(jQuery);
-	
 }
+
+$(document).ready(function() {
+  
+  $(".selLabel").click(function () {
+    $('.dropdown').toggleClass('active');
+  });
+  
+  $(".dropdown-list li").click(function() {
+    $('.selLabel').text($(this).text());
+    $('.dropdown').removeClass('active');
+    $('.selected-item p span').text($('.selLabel').text());
+  });
+  
+});
     
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
-/*Preview Note*/
-function PlaySingleNote(note){
-    var audio = document.getElementById(note);
-    audio.currentTime = 0;
-    audio.play();
-}
+/*Preview Button*/
+msEl1 = document.getElementById("musicName");
+msEl2 = document.getElementById("musicNotes");
+document.getElementById("preview").addEventListener("click", function() {
+	var rawText = currentMusic.join(" "); //reset notes
+	currentMusic.forEach((note, i) => { // get single note from array
+		setTimeout(function(){
+			console.log("Playing Note: "+note);
+			PlaySingleNote(note.toLowerCase());
+			// change note's color while playing (each note uses 3 chars)
+			msEl2.innerHTML ='<span style="color: #ff0000">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
+		}, i * 500); // i is needed for proper foreach delay
+	});
+});
 
 /*TypeWriterEffects*/
 
@@ -101,22 +115,12 @@ var captionLength1 = 0;
 var captionLength2 = 0;
 var musicName = '';
 
-$(document).ready(function() {
-    msEl1 = $('#musicName');
-	msEl2 = $('#musicNotes');
-    /*$('#test-typing').click(function(){ MusicNameTypingEffect("Test"); });*/
-	$('#preview').click(function(){
-		var rawText = currentMusic.join(" "); //reset notes
-		currentMusic.forEach((note, i) => { // get single note from array
-			setTimeout(function(){
-				console.log("Playing Note: "+note);
-				PlaySingleNote(note.toLowerCase());
-				// change note's color while playing (each note uses 3 chars)
-				msEl2.html('<span style="color: #ff0000">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length));
-			}, i * 500); // i is needed for proper foreach delay
-		});
-	});
-});
+function PlaySingleNote(note){
+    var audio = document.getElementById(note);
+    audio.currentTime = 0;
+    audio.play();
+}
+
 
 function MusicNameTypingEffect(text) {
     TypeName(text);
@@ -127,7 +131,7 @@ function MusicNotesTypingEffect(text) {
 }
 
 function TypeName(text) {
-    msEl1.html(text.substr(0, captionLength1++));
+    msEl1.innerHTML = text.substr(0, captionLength1++);
     if(captionLength1 < text.length+1) {
         setTimeout(function(){TypeName(text)}, 50);
     } else {
@@ -137,9 +141,9 @@ function TypeName(text) {
 }
 
 function TypeNotes(text) {
-    msEl2.html(text.substr(0, captionLength2++));
+    msEl2.innerHTML = text.substr(0, captionLength2++);
     if(captionLength2 < text.length+1) {
-        setTimeout(function(){TypeNotes(text)}, 50);
+        setTimeout(function(){TypeNotes(text)}, 15);
     } else {
         captionLength2 = 0;
         text = '';
