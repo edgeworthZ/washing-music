@@ -14,10 +14,11 @@ function GetMusicFromJSON(){
 			arr.forEach((data) => { // get single note from array
 				console.log(data);
 			});
-			var doc =  document.getElementById("musicList");
-			var newMusic = document.createElement("li");
-			//newMusic.id = 'div_id';
-			newMusic.innerHTML = '<a class="dropdown-item" href="#">'+data.name+'</a>';
+			var doc =  document.getElementById("myDropdown");
+			var newMusic = document.createElement("a");
+			newMusic.classList.add('dropdown-item');
+			newMusic.href = '#';
+			newMusic.innerHTML = data.name;
 			doc.appendChild(newMusic);
 			if(data.name == 'Default'){ // Choose default music
 				currentMusic = data.val;
@@ -28,7 +29,7 @@ function GetMusicFromJSON(){
 }
 
 /*Title Wave Effect*/
-function AnimateText(){
+/*function AnimateText(){
 	// Wrap every letter in a span
 	var textWrapper = document.querySelector('.anim1 .letters');
 	textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -46,8 +47,26 @@ function AnimateText(){
 		easing: "easeOutExpo",
 		delay: 2000
 	  });
+}*/
+
+/* Dropdown */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
 }
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 
 /*Start Event On Load*/
 window.addEventListener('load', (event) => {
@@ -77,20 +96,6 @@ function AddCustomEventListener() {
 		  });
 		});
 }
-
-$(document).ready(function() {
-  
-  $(".selLabel").click(function () {
-    $('.dropdown').toggleClass('active');
-  });
-  
-  $(".dropdown-list li").click(function() {
-    $('.selLabel').text($(this).text());
-    $('.dropdown').removeClass('active');
-    $('.selected-item p span').text($('.selLabel').text());
-  });
-  
-});
     
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
