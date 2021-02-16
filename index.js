@@ -95,7 +95,7 @@ document.getElementById("preview").addEventListener("click", function() {
 				timeouts = []; return;
 			}
 			console.log("Playing Note: "+note);
-			PlaySingleNote(note.toLowerCase());
+			PlaySingleNote(note);
 			// change note's color while playing (assume that each note takes 3 spaces)
 			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
 			if(i == queueMusic.length-1) isPlaying = false;
@@ -134,7 +134,8 @@ var captionLength2 = 0;
 var musicName = '';
 
 function PlaySingleNote(note){
-    var audio = document.getElementById(note);
+    //var audio = document.getElementById(note);
+	var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
     audio.currentTime = 0;
     audio.play();
 }
@@ -161,7 +162,7 @@ function TypeName(text) {
 function TypeNotes(text) {
     msEl2.innerHTML = text.substr(0, captionLength2++);
     if(captionLength2 < text.length+1) {
-        setTimeout(function(){TypeNotes(text)}, 15);
+        setTimeout(function(){TypeNotes(text)}, 7);
     } else {
         captionLength2 = 0;
         text = '';

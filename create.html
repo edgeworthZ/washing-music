@@ -27,7 +27,7 @@
 
   <!-- Piano -->
   <!-- Sound -->
-  <audio id="a3" src="notes/a3.wav"></audio>
+  <!--<audio id="a3" src="notes/a3.wav"></audio>
   <audio id="a-3" src="notes/a-3.wav"></audio>
   <audio id="a4" src="notes/a4.wav"></audio>
   <audio id="a-4" src="notes/a-4.wav"></audio>
@@ -65,7 +65,7 @@
   <audio id="g4" src="notes/g4.wav"></audio>
   <audio id="g-4" src="notes/g-4.wav"></audio> 
   <audio id="g5" src="notes/g5.wav"></audio>
-  <audio id="g-5" src="notes/g-5.wav"></audio>
+  <audio id="g-5" src="notes/g-5.wav"></audio>-->
 
   <!-- Keys -->
   <div class = "piano">
@@ -112,7 +112,8 @@
 
 <!-- Function for piano -->
 <script>function playSound(note){
-  var sound = document.getElementById(note)
+  //var sound = document.getElementById(note)
+  sound = new Audio('notes/'+note+'.ogg');
   sound.play() 
 }</script>
 
