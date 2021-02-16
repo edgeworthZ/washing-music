@@ -18,6 +18,7 @@ function GetMusicFromJSON(){
 			var newMusic = document.createElement("a");
 			newMusic.classList.add('dropdown-item');
 			newMusic.href = '#';
+			newMusic.draggable = false;
 			newMusic.innerHTML = data.name;
 			doc.appendChild(newMusic);
 			if(data.name == 'Default'){ // Choose default music
@@ -75,6 +76,27 @@ window.addEventListener('load', (event) => {
 	AnimateText();
 });
 
+setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
+
+/*Preview Button*/
+var isPlaying; // prevent clicking preview button again before music end
+var msEl1 = document.getElementById("musicName");
+var msEl2 = document.getElementById("musicNotes");
+document.getElementById("preview").addEventListener("click", function() {
+	if(isPlaying) return;
+	isPlaying = true;
+	var rawText = currentMusic.join(" "); //reset notes
+	currentMusic.forEach((note, i) => { // get single note from array
+		setTimeout(function(){
+			console.log("Playing Note: "+note);
+			PlaySingleNote(note.toLowerCase());
+			// change note's color while playing (assume that each note takes 3 spaces)
+			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
+			if(i == currentMusic.length-1) isPlaying = false;
+		}, i * 500); // i is needed for proper foreach delay
+	});
+});
+
 /*Events Listener*/
 function AddCustomEventListener() {
 	var elements = document.getElementsByClassName('dropdown-item');
@@ -97,22 +119,6 @@ function AddCustomEventListener() {
 		});
 }
     
-setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
-
-/*Preview Button*/
-msEl1 = document.getElementById("musicName");
-msEl2 = document.getElementById("musicNotes");
-document.getElementById("preview").addEventListener("click", function() {
-	var rawText = currentMusic.join(" "); //reset notes
-	currentMusic.forEach((note, i) => { // get single note from array
-		setTimeout(function(){
-			console.log("Playing Note: "+note);
-			PlaySingleNote(note.toLowerCase());
-			// change note's color while playing (each note uses 3 chars)
-			msEl2.innerHTML ='<span style="color: #ff0000">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
-		}, i * 500); // i is needed for proper foreach delay
-	});
-});
 
 /*TypeWriterEffects*/
 
