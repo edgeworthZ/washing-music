@@ -51,8 +51,8 @@ function AnimateText(){
 }
 
 /* Dropdown */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function OpenDropdownContent() {
+	document.getElementById("myDropdown").classList.toggle("show");
 }
 
 // Close the dropdown if the user clicks outside of it
@@ -82,18 +82,24 @@ setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for f
 var isPlaying; // prevent clicking preview button again before music end
 var msEl1 = document.getElementById("musicName");
 var msEl2 = document.getElementById("musicNotes");
+var timeouts = [];
 document.getElementById("preview").addEventListener("click", function() {
 	if(isPlaying) return;
 	isPlaying = true;
-	var rawText = currentMusic.join(" "); //reset notes
-	currentMusic.forEach((note, i) => { // get single note from array
-		setTimeout(function(){
+	var queueMusic = currentMusic.slice();
+	var rawText = queueMusic.join(" "); //reset notes
+	queueMusic.forEach((note, i) => { // get single note from array
+		timeouts.push(setTimeout(function(){
+			if(!isPlaying){ // stop music if user changed music and kill all timeouts
+				for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
+				timeouts = []; return;
+			}
 			console.log("Playing Note: "+note);
 			PlaySingleNote(note.toLowerCase());
 			// change note's color while playing (assume that each note takes 3 spaces)
 			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
-			if(i == currentMusic.length-1) isPlaying = false;
-		}, i * 500); // i is needed for proper foreach delay
+			if(i == queueMusic.length-1) isPlaying = false;
+		}, i * 500)); // i is needed for proper foreach delay
 	});
 });
 
@@ -102,6 +108,7 @@ function AddCustomEventListener() {
 	var elements = document.getElementsByClassName('dropdown-item');
 		Array.from(elements).forEach((element) => {
 		  element.addEventListener('click', (event) => {
+			isPlaying = false; // stop current music if playing
 			//alert(`Clicked ${event.target.innerText}!`);
 			var label = document.getElementById('dropLabel');
 			var musicName = event.target.innerText;
