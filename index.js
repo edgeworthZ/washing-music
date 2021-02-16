@@ -29,7 +29,7 @@ function GetMusicFromJSON(){
 }
 
 /*Title Wave Effect*/
-/*function AnimateText(){
+function AnimateText(){
 	// Wrap every letter in a span
 	var textWrapper = document.querySelector('.anim1 .letters');
 	textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -47,7 +47,7 @@ function GetMusicFromJSON(){
 		easing: "easeOutExpo",
 		delay: 2000
 	  });
-}*/
+}
 
 /* Dropdown */
 function myFunction() {
