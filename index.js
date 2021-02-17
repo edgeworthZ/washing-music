@@ -3,7 +3,7 @@ var jsonMusic; // musics from JSON
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
-	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/samples-record-v3.json")
+	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/samples-record-v4.json")
 		.then(response => response.json())
 		.then((datas) => {
 			jsonMusic = datas;
@@ -95,9 +95,9 @@ document.getElementById("preview").addEventListener("click", function() {
 				timeouts = []; return;
 			}
 			console.log("Playing Note: "+note);
-			PlaySingleNote(note);
-			// change note's color while playing (assume that each note takes 3 spaces)
-			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*3)+'</span>'+rawText.substr((i+1)*3,rawText.length);
+			if(note != "0") PlaySingleNote(note);
+			// change note's color while playing
+			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*(note.length+1))+'</span>'+rawText.substr((i+1)*(note.length+1),rawText.length);
 			if(i == queueMusic.length-1) isPlaying = false;
 		}, i * 500)); // i is needed for proper foreach delay
 	});
