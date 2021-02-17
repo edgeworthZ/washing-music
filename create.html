@@ -26,47 +26,6 @@
 	<a class="btn btn-primary pull-right btn-xl text-uppercase" href="#" role="button">Delete</a>
 
   <!-- Piano -->
-  <!-- Sound -->
-  <!--<audio id="a3" src="notes/a3.wav"></audio>
-  <audio id="a-3" src="notes/a-3.wav"></audio>
-  <audio id="a4" src="notes/a4.wav"></audio>
-  <audio id="a-4" src="notes/a-4.wav"></audio>
-  <audio id="a5" src="notes/a5.wav"></audio>
-  <audio id="a-5" src="notes/a-5.wav"></audio>
-  <audio id="b3" src="notes/b3.wav"></audio>
-  <audio id="b4" src="notes/b4.wav"></audio>
-  <audio id="b5" src="notes/b5.wav"></audio>
-  <audio id="c3" src="notes/c3.wav"></audio>
-  <audio id="c-3" src="notes/c-3.wav"></audio>
-  <audio id="c4" src="notes/c4.wav"></audio>
-  <audio id="c-4" src="notes/c-4.wav"></audio>
-  <audio id="c5" src="notes/c5.wav"></audio>
-  <audio id="c-5" src="notes/c-5.wav"></audio>
-  <audio id="d3" src="notes/d3.wav"></audio>
-  <audio id="d-3" src="notes/d-3.wav"></audio>
-  <audio id="d4" src="notes/d4.wav"></audio>
-  <audio id="d-4" src="notes/d-4.wav"></audio>
-  <audio id="d5" src="notes/d5.wav"></audio>
-  <audio id="d-5" src="notes/d-5.wav"></audio>
-  <audio id="e3" src="notes/e3.wav"></audio>
-  <audio id="e-3" src="notes/e-3.wav"></audio>
-  <audio id="e4" src="notes/e4.wav"></audio>
-  <audio id="e-4" src="notes/e-4.wav"></audio>
-  <audio id="e5" src="notes/e5.wav"></audio>
-  <audio id="e-5" src="notes/e-5.wav"></audio>
-  <audio id="f3" src="notes/f3.wav"></audio>
-  <audio id="f-3" src="notes/f-3.wav"></audio>
-  <audio id="f4" src="notes/f4.wav"></audio>
-  <audio id="f-4" src="notes/f-4.wav"></audio>
-  <audio id="f5" src="notes/f5.wav"></audio>
-  <audio id="f-5" src="notes/f-5.wav"></audio>
-  <audio id="g3" src="notes/g3.wav"></audio>
-  <audio id="g-3" src="notes/g-3.wav"></audio>
-  <audio id="g4" src="notes/g4.wav"></audio>
-  <audio id="g-4" src="notes/g-4.wav"></audio> 
-  <audio id="g5" src="notes/g5.wav"></audio>
-  <audio id="g-5" src="notes/g-5.wav"></audio>-->
-
   <!-- Keys -->
   <div class = "piano">
     <ul class="set">
@@ -74,9 +33,9 @@
       <li class="black as"onclick="playSound('f-3')"></li>
       <li class="white a"onclick="playSound('g3')"></li>
       <li class="black gs"onclick="playSound('g-3')"></li>
-      <li class="white g"onclick="playSound('a4')"></li>
-      <li class="black fs"onclick="playSound('a-4')"></li>
-      <li class="white f"onclick="playSound('b4')"></li>
+      <li class="white g"onclick="playSound('a3')"></li>
+      <li class="black fs"onclick="playSound('a-3')"></li>
+      <li class="white f"onclick="playSound('b3')"></li>
       <li class="white e"onclick="playSound('c4')"></li>
         <li class="black ds"onclick="playSound('c-4')"></li>
         <li class="white d"onclick="playSound('d4')"></li>
@@ -86,9 +45,9 @@
       <li class="black as"onclick="playSound('f-4')"></li>
       <li class="white a"onclick="playSound('g4')"></li>
       <li class="black gs"onclick="playSound('g-4')"></li>
-      <li class="white g"onclick="playSound('a5')"></li>
-      <li class="black fs"onclick="playSound('a-5')"></li>
-      <li class="white f"onclick="playSound('b5')"></li>
+      <li class="white g"onclick="playSound('a4')"></li>
+      <li class="black fs"onclick="playSound('a-4')"></li>
+      <li class="white f"onclick="playSound('b4')"></li>
       <li class="white e"onclick="playSound('c5')"></li>
         <li class="black ds"onclick="playSound('c-5')"></li>
         <li class="white d"onclick="playSound('d5')"></li>
@@ -98,21 +57,20 @@
       <li class="black as"onclick="playSound('f-5')"></li>
       <li class="white a"onclick="playSound('g5')"></li>
       <li class="black gs"onclick="playSound('g-5')"></li>
-      <li class="white g"></li>
-      <li class="black fs"></li>
-      <li class="white f"></li>
-      <li class="white e"></li>
-        <li class="black ds"></li>
-        <li class="white d"></li>
-        <li class="black cs"></li>
-        <li class="white c"></li>
+      <li class="white g" onclick="playSound('a5')"></li>
+      <li class="black fs" onclick="playSound('a-5')"></li>
+      <li class="white f"onclick="playSound('b5')"></li>
+      <li class="white e"onclick="playSound('c6')"></li>
+        <li class="black ds"onclick="playSound('c-6')"></li>
+        <li class="white d"onclick="playSound('d6')"></li>
+        <li class="black cs"onclick="playSound('d-6')"></li>
+        <li class="white c"onclick="playSound('e6')"></li>
     </ul>
   </div>
 </header>
 
 <!-- Function for piano -->
 <script>function playSound(note){
-  //var sound = document.getElementById(note)
   sound = new Audio('notes/'+note+'.ogg');
   sound.play() 
 }</script>
