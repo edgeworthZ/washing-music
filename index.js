@@ -88,7 +88,9 @@ document.getElementById("preview").addEventListener("click", function() {
 	isPlaying = true;
 	var queueMusic = currentMusic.slice();
 	var rawText = queueMusic.join(" "); //reset notes
+	var playIndex = 0;
 	queueMusic.forEach((note, i) => { // get single note from array
+	console.log("raw"+rawText);
 		timeouts.push(setTimeout(function(){
 			if(!isPlaying){ // stop music if user changed music and kill all timeouts
 				for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
@@ -97,7 +99,8 @@ document.getElementById("preview").addEventListener("click", function() {
 			console.log("Playing Note: "+note);
 			if(note != "0") PlaySingleNote(note);
 			// change note's color while playing
-			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,(i+1)*(note.length+1))+'</span>'+rawText.substr((i+1)*(note.length+1),rawText.length);
+			playIndex += (note.length+1);
+			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,playIndex)+'</span>'+rawText.substr(playIndex,rawText.length);
 			if(i == queueMusic.length-1) isPlaying = false;
 		}, i * 500)); // i is needed for proper foreach delay
 	});
@@ -162,7 +165,7 @@ function TypeName(text) {
 function TypeNotes(text) {
     msEl2.innerHTML = text.substr(0, captionLength2++);
     if(captionLength2 < text.length+1) {
-        setTimeout(function(){TypeNotes(text)}, 7);
+        setTimeout(function(){TypeNotes(text)}, 3);
     } else {
         captionLength2 = 0;
         text = '';
