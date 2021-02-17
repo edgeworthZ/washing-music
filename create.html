@@ -29,51 +29,85 @@
   <!-- Keys -->
   <div class = "piano">
     <ul class="set">
-      <li class="white b" onclick="playSound('f3')"></li>
-      <li class="black as"onclick="playSound('f-3')"></li>
-      <li class="white a"onclick="playSound('g3')"></li>
-      <li class="black gs"onclick="playSound('g-3')"></li>
-      <li class="white g"onclick="playSound('a3')"></li>
-      <li class="black fs"onclick="playSound('a-3')"></li>
-      <li class="white f"onclick="playSound('b3')"></li>
-      <li class="white e"onclick="playSound('c4')"></li>
-        <li class="black ds"onclick="playSound('c-4')"></li>
-        <li class="white d"onclick="playSound('d4')"></li>
-        <li class="black cs"onclick="playSound('d-4')"></li>
-        <li class="white c"onclick="playSound('e4')"></li>
-      <li class="white b"onclick="playSound('f4')"></li>
-      <li class="black as"onclick="playSound('f-4')"></li>
-      <li class="white a"onclick="playSound('g4')"></li>
-      <li class="black gs"onclick="playSound('g-4')"></li>
-      <li class="white g"onclick="playSound('a4')"></li>
-      <li class="black fs"onclick="playSound('a-4')"></li>
-      <li class="white f"onclick="playSound('b4')"></li>
-      <li class="white e"onclick="playSound('c5')"></li>
-        <li class="black ds"onclick="playSound('c-5')"></li>
-        <li class="white d"onclick="playSound('d5')"></li>
-        <li class="black cs"onclick="playSound('d-5')"></li>
-        <li class="white c"onclick="playSound('e5')"></li>
-      <li class="white b"onclick="playSound('f5')"></li>
-      <li class="black as"onclick="playSound('f-5')"></li>
-      <li class="white a"onclick="playSound('g5')"></li>
-      <li class="black gs"onclick="playSound('g-5')"></li>
-      <li class="white g" onclick="playSound('a5')"></li>
-      <li class="black fs" onclick="playSound('a-5')"></li>
-      <li class="white f"onclick="playSound('b5')"></li>
-      <li class="white e"onclick="playSound('c6')"></li>
-        <li class="black ds"onclick="playSound('c-6')"></li>
-        <li class="white d"onclick="playSound('d6')"></li>
-        <li class="black cs"onclick="playSound('d-6')"></li>
-        <li class="white c"onclick="playSound('e6')"></li>
+      <li class="white b" id ='f3'></li>
+      <li class="black as" id='f-3'></li>
+      <li class="white a" id='g3'></li>
+      <li class="black gs" id='g-3'></li>
+      <li class="white g" id='a3'></li>
+      <li class="black fs" id='a-3'></li>
+      <li class="white f" id='b3'></li>
+      <li class="white e" id='c4'></li>
+        <li class="black ds" id='c-4'></li>
+        <li class="white d" id='d4'></li>
+        <li class="black cs" id='d-4'></li>
+        <li class="white c" id='e4'></li>
+      <li class="white b" id='f4'></li>
+      <li class="black as" id='f-4'></li>
+      <li class="white a" id='g4'></li>
+      <li class="black gs" id='g-4'></li>
+      <li class="white g" id='a4'></li>
+      <li class="black fs" id='a-4'></li>
+      <li class="white f" id='b4'></li>
+      <li class="white e" id='c5'></li>
+        <li class="black ds" id='c-5'></li>
+        <li class="white d" id='d5'></li>
+        <li class="black cs" id='d-5'></li>
+        <li class="white c" id='e5'></li>
+      <li class="white b" id='f5'></li>
+      <li class="black as" id='f-5'></li>
+      <li class="white a" id='g5'></li>
+      <li class="black gs" id='g-5'></li>
+      <li class="white g" id='a5'></li>
+      <li class="black fs" id='a-5'></li>
+      <li class="white f" id='b5'></li>
+      <li class="white e" id='c6'></li>
+        <li class="black ds" id='c-6'></li>
+        <li class="white d" id='d6'></li>
+        <li class="black cs" id='d-6'></li>
+        <li class="white c" id='e6'></li>
     </ul>
   </div>
 </header>
 
 <!-- Function for piano -->
-<script>function playSound(note){
-  sound = new Audio('notes/'+note+'.ogg');
-  sound.play() 
-}</script>
+<script>
+function playSound(note){
+	sound = new Audio('notes/'+note+'.ogg');
+	sound.play() 
+}
+
+function triggerKey(note){
+	playSound(note);
+	document.getElementById(note).classList.add('active');
+}
+
+// play sound by hovering over keys while mousedown
+$(document).ready(function(){
+  var isDown = false;   // Tracks status of mouse button
+
+  $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
+    isDown = true;
+	triggerKey(this.id);
+  }).mouseleave(function(){ // cursor leaves current key, remove its active class
+    if(isDown) { // User hover to a key without releasing mouse
+       document.getElementById(this.id).classList.remove('active');
+    }
+  }).mouseover(function(){ // cursor is now pointing to new key, play new note & change active class
+    if(isDown) { // User hover to a key without releasing mouse
+	   triggerKey(this.id);
+    }
+  }).mouseup(function(){ // release mouse on piano, remove active class
+    if(isDown) { // User hover to a key without releasing mouse
+       document.getElementById(this.id).classList.remove('active');
+    }
+  });
+  
+  $(document).mouseup(function() { // release mouse outside piano
+    isDown = false;
+  });
+  
+});
+</script>
 
 <!--Footer-->
 <footer class="content">

@@ -1,6 +1,6 @@
 let record = [];
 
-//record algorithm
+// record algorithm
 record.push('E');
 record.push('D');
 record.push('C');
@@ -11,7 +11,7 @@ record.push('E');
 record.push('D');
 console.log(record);
 
-//post to backend
+// post to backend
 function create(name) {
 	fetch("", {
 		method: "POST",
@@ -36,3 +36,4 @@ form.addEventListener("submit", (event) => {
   form.elements["name"].value = "";
   create(name);
 });
+
