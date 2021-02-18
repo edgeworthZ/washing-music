@@ -3,14 +3,21 @@ var jsonMusic; // musics from JSON
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
-	fetch("https://raw.githubusercontent.com/lazycodex/xyz/main/samples-record-v4.json")
+	fetch("http://158.108.182.8:50006/find_all",{  
+        method: "GET",
+        headers: {
+			//"Access-Control-Allow-Origin": "*",
+			//"Access-Control-Allow-Methods": "*",
+			//"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"},
+    })
 		.then(response => response.json())
 		.then((datas) => {
 			jsonMusic = datas;
 			console.log(jsonMusic);
 			datas.forEach((data) => {
 			console.log(data.name);
-			var arr = data.val;
+			var arr = data.notes;
 			arr.forEach((data) => { // get single note from array
 				console.log(data);
 			});
@@ -22,7 +29,7 @@ function GetMusicFromJSON(){
 			newMusic.innerHTML = data.name;
 			doc.appendChild(newMusic);
 			if(data.name == 'Default'){ // Choose default music
-				currentMusic = data.val;
+				currentMusic = data.notes;
 				document.getElementById("musicNotes").innerHTML = currentMusic.join(" ");
 			}
 		  });
@@ -119,8 +126,8 @@ function AddCustomEventListener() {
 			for(var i=0; i<jsonMusic.length;i++) {
 				var obj = jsonMusic[i];
 				if(obj.name == musicName){
-					console.log("Choose Music: "+obj.name+" Notes: "+obj.val);
-					currentMusic = obj.val;
+					console.log("Choose Music: "+obj.name+" Notes: "+obj.notes);
+					currentMusic = obj.notes;
 				}
 			}
 			MusicNameTypingEffect(musicName); 

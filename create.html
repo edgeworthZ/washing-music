@@ -73,47 +73,6 @@
     </ul>
   </div>
 </header>
-
-<!-- Function for piano -->
-<script>
-function playSound(note){
-	sound = new Audio('notes/'+note+'.ogg');
-	sound.play() 
-}
-
-function triggerKey(note){
-	playSound(note);
-	document.getElementById(note).classList.add('active');
-}
-
-// play sound by hovering over keys while mousedown
-$(document).ready(function(){
-  var isDown = false;   // Tracks status of mouse button
-
-  $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
-    isDown = true;
-	triggerKey(this.id);
-  }).mouseleave(function(){ // cursor leaves current key, remove its active class
-    if(isDown) { // User hover to a key without releasing mouse
-       document.getElementById(this.id).classList.remove('active');
-    }
-  }).mouseover(function(){ // cursor is now pointing to new key, play new note & change active class
-    if(isDown) { // User hover to a key without releasing mouse
-	   triggerKey(this.id);
-    }
-  }).mouseup(function(){ // release mouse on piano, remove active class
-    if(isDown) { // User hover to a key without releasing mouse
-       document.getElementById(this.id).classList.remove('active');
-    }
-  });
-  
-  $(document).mouseup(function() { // release mouse outside piano
-    isDown = false;
-  });
-  
-});
-</script>
-
 <!--Footer-->
 <footer class="content">
 	<div class="mycontent-subheading">Made by Opensource</div>

@@ -1,39 +1,80 @@
 let record = [];
 
 // record algorithm
-record.push('E');
-record.push('D');
-record.push('C');
-record.push('E');
-record.push('C');
-record.push('C');
-record.push('E');
-record.push('D');
+record.push('E4');
+record.push('D4');
+record.push('C4');
+record.push('E4');
+record.push('C4');
+record.push('C4');
+record.push('E4');
+record.push('D4');
 console.log(record);
 
 // post to backend
 function create(name) {
-	fetch("", {
+	fetch("http://158.108.182.8:50006/create", {
 		method: "POST",
 		headers: {
-		  // "Access-Control-Allow-Origin": "*",
-		  // "Access-Control-Allow-Credentials": true,
+		 // "Access-Control-Allow-Origin": "*",
+		 // "Access-Control-Allow-Credentials": true,
 		  "Content-Type": "application/json",
 		},
-		body: JSON.stringify({ name: name, value: record }),
+		body: JSON.stringify({ name: name, notes: record }),
 	  })
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
 }
 
-let form = document.getElementById("submitButton");
+let submitButton = document.getElementById("submitButton");
+let form = document.getElementById("music_name");
 
-form.addEventListener("submit", (event) => {
+submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  //id = someUniqueID
-  music_name = form.elements["music_name"].value;
-  form.elements["music_name"].value = "";
-  create(music_name);
+  music_name = form.value;
+  form.value = "";
+  if(music_name == ""){ 
+	alert(`Please enter music name!`); return;
+  }else{
+	create(music_name);
+  }
+});
+
+
+/* Piano */
+function playSound(note){
+	sound = new Audio('notes/'+note+'.ogg');
+	sound.play() 
+}
+
+function triggerKey(note){
+	playSound(note);
+	document.getElementById(note).classList.add('active');
+}
+
+$(document).ready(function(){
+  var isDown = false;   // Tracks status of mouse button
+
+  $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
+    isDown = true;
+	triggerKey(this.id);
+  }).mouseleave(function(){ // cursor leaves current key, remove its active class
+    if(isDown) { // User hover to a key without releasing mouse
+       document.getElementById(this.id).classList.remove('active');
+    }
+  }).mouseover(function(){ // cursor is now pointing to new key, play new note & change active class
+    if(isDown) { // User hover to a key without releasing mouse
+	   triggerKey(this.id);
+    }
+  }).mouseup(function(){ // release mouse on piano, remove active class
+    if(isDown) { // User hover to a key without releasing mouse
+       document.getElementById(this.id).classList.remove('active');
+    }
+  });
+  
+  $(document).mouseup(function() { // release mouse outside piano
+    isDown = false;
+  });
 });
 
