@@ -32,8 +32,8 @@ let form = document.getElementById("submitButton");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   //id = someUniqueID
-  name = form.elements["name"].value;
-  form.elements["name"].value = "";
-  create(name);
+  music_name = form.elements["music_name"].value;
+  form.elements["music_name"].value = "";
+  create(music_name);
 });
 
