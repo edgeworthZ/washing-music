@@ -233,3 +233,8 @@ ul li:last-child {
   margin-left: 50px;
   margin-top: 50px;
 }
+
+/* input name */
+#music_name{
+  text-align: center;
+}
