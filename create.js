@@ -25,6 +25,7 @@ function create(name) {
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
+		alert(name+` has been added!`);
 }
 
 let submitButton = document.getElementById("submitButton");
