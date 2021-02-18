@@ -1,15 +1,18 @@
 let record = [];
 
 // record algorithm
-record.push('E4');
-record.push('D4');
-record.push('C4');
-record.push('E4');
-record.push('C4');
-record.push('C4');
-record.push('E4');
-record.push('D4');
-console.log(record);
+// record.push('E4');
+// record.push('D4');
+// record.push('C4');
+// record.push('E4');
+// record.push('C4');
+// record.push('C4');
+// record.push('E4');
+// record.push('D4');
+function showRecord(){
+  console.log(record)
+}
+// setInterval(showRecord,1000)
 
 // post to backend
 function create(name) {
@@ -47,6 +50,7 @@ submitButton.addEventListener("click", (event) => {
 function playSound(note){
 	sound = new Audio('notes/'+note+'.ogg');
 	sound.play() 
+  record.push(note.toUpperCase())
 }
 
 function triggerKey(note){
@@ -78,4 +82,12 @@ $(document).ready(function(){
     isDown = false;
   });
 });
+//Sample Key pressed (fix and mapping later)
+window.addEventListener("keydown", checkKeyPressed, false);
+
+function checkKeyPressed(evt,note,key_code) {
+    if (evt.keyCode == "65") {
+        triggerKey('f4')
+    }
+}
 
