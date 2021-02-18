@@ -36,6 +36,15 @@ function delete_note(){
 
 let submitButton = document.getElementById("submitButton");
 let form = document.getElementById("music_name");
+let deleteButton = document.getElementById("deleteButton")
+deleteButton.addEventListener("click",(event) =>{
+  if (record.length == 0){
+    alert("The notes are empty."); return;
+  }
+  else{
+    delete_note();
+  }
+});
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
