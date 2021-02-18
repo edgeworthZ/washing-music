@@ -30,6 +30,9 @@ function create(name) {
 		.catch((error) => console.log("error", error));
 		alert(name+` has been added!`);
 }
+function delete_note(){
+  record.pop()
+}
 
 let submitButton = document.getElementById("submitButton");
 let form = document.getElementById("music_name");
