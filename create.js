@@ -1,14 +1,5 @@
 let record = [];
 
-// record algorithm
-// record.push('E4');
-// record.push('D4');
-// record.push('C4');
-// record.push('E4');
-// record.push('C4');
-// record.push('C4');
-// record.push('E4');
-// record.push('D4');
 function showRecord(){
   console.log(record)
 }
@@ -76,9 +67,12 @@ function triggerKey(note){
 	document.getElementById(note).classList.add('active');
 }
 
+var isTypingMusicName;
+/* Interactions */
 $(document).ready(function(){
-  var isDown = false;   // Tracks status of mouse button
+  //setInterval(function test(){console.log(isTypingMusicName);},1000)
 
+  var isDown = false;   // Tracks status of mouse button
   $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
     isDown = true;
 	triggerKey(this.id);
@@ -95,15 +89,27 @@ $(document).ready(function(){
        document.getElementById(this.id).classList.remove('active');
     }
   });
-  
-  $(document).mouseup(function() { // release mouse outside piano
+  $(document).mouseup(function(e) { // release mouse outside piano
     isDown = false;
+	
+	var container = jQuery('#music_name');
+	if(!container.is(e.target)){
+		isTypingMusicName = false;
+		//console.log('Click Outside TextBox!');
+	}
   });
+  /* Input Name */
+  $("#music_name").mousedown(function() { // release mouse outside piano
+    isTypingMusicName = true;
+	//console.log('Click Inside TextBox!');
+  });
+  
 });
 //Sample Key pressed (fix and mapping later)
 window.addEventListener("keydown", checkKeyPressed, false);
 
 function checkKeyPressed(evt,note,key_code) {
+	if(isTypingMusicName) return; // prevent recording a new note while typing music name
     if (evt.keyCode == "65") {
         triggerKey('f4')
     }

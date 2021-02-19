@@ -14,12 +14,6 @@ header.bg {
   background-size: cover;
 }
 
-.scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
-}
-
 header.bg.animated {
   -webkit-animation: filter-animation 72s infinite;
   animation: filter-animation 72s infinite;
@@ -163,6 +157,12 @@ footer.content {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
 
 /* disable dragging and selecting elements */
 *, *::after, *::before {
