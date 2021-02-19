@@ -3,7 +3,7 @@ var jsonMusic; // musics from JSON
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
-	fetch("http://158.108.182.8:50006/find_all",{  
+	fetch("http://158.108.182.8:50006/find_all",{
         method: "GET",
         headers: {
 			//"Access-Control-Allow-Origin": "*",
@@ -90,6 +90,7 @@ var isPlaying; // prevent clicking preview button again before music end
 var msEl1 = document.getElementById("musicName");
 var msEl2 = document.getElementById("musicNotes");
 var timeouts = [];
+var playInterval = 555;
 document.getElementById("preview").addEventListener("click", function() {
 	if(isPlaying) return;
 	isPlaying = true;
@@ -109,7 +110,7 @@ document.getElementById("preview").addEventListener("click", function() {
 			playIndex += (note.length+1);
 			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,playIndex)+'</span>'+rawText.substr(playIndex,rawText.length);
 			if(i == queueMusic.length-1) isPlaying = false;
-		}, i * 500)); // i is needed for proper foreach delay
+		}, i * 750)); // i is needed for proper foreach delay
 	});
 });
 

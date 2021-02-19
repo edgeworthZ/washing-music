@@ -12,7 +12,7 @@ let record = [];
 function showRecord(){
   console.log(record)
 }
-// setInterval(showRecord,1000)
+ //setInterval(showRecord,1000)
 
 // post to backend
 function create(name) {
@@ -31,7 +31,8 @@ function create(name) {
 		alert(name+` has been added!`);
 }
 function delete_note(){
-  record.pop()
+  record.pop();
+  updateDisplayText();
 }
 
 let submitButton = document.getElementById("submitButton");
@@ -57,12 +58,17 @@ submitButton.addEventListener("click", (event) => {
   }
 });
 
+function updateDisplayText(){
+	var recordText = document.getElementById('recordNotes');
+	recordText.innerHTML = record.join(" ");
+}
 
 /* Piano */
 function playSound(note){
 	sound = new Audio('notes/'+note+'.ogg');
 	sound.play() 
-  record.push(note.toUpperCase())
+    record.push(note.toUpperCase())
+	updateDisplayText();
 }
 
 function triggerKey(note){
