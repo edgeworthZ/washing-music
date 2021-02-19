@@ -1,3 +1,4 @@
+var currentMusicName;
 var currentMusic; // default music
 var jsonMusic; // musics from JSON
 
@@ -85,7 +86,7 @@ window.addEventListener('load', (event) => {
 
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
-/*Preview Button*/
+/* Preview Button */
 var isPlaying; // prevent clicking preview button again before music end
 var msEl1 = document.getElementById("musicName");
 var msEl2 = document.getElementById("musicNotes");
@@ -114,7 +115,25 @@ document.getElementById("preview").addEventListener("click", function() {
 	});
 });
 
-/*Events Listener*/
+/* Delete Button */
+document.getElementById("delete").addEventListener("click", function() {
+	fetch("http://158.108.182.8:50006/delete", {
+		method: "DELETE",
+		headers: {
+		 // "Access-Control-Allow-Origin": "*",
+		 // "Access-Control-Allow-Credentials": true,
+		  "Content-Type": "application/json",
+		},
+		body: JSON.stringify({ name: currentMusicName}),
+	  })
+		.then((response) => response.text())
+		.then((result) => console.log(result))
+		.catch((error) => console.log("error", error));
+		alert(name+` has been deleted!`);
+	window.location.reload(false); 
+});
+
+/* Events Listener */
 function AddCustomEventListener() {
 	var elements = document.getElementsByClassName('dropdown-item');
 		Array.from(elements).forEach((element) => {
@@ -128,6 +147,7 @@ function AddCustomEventListener() {
 				var obj = jsonMusic[i];
 				if(obj.name == musicName){
 					console.log("Choose Music: "+obj.name+" Notes: "+obj.notes);
+					currentMusicName = obj.name;
 					currentMusic = obj.notes;
 				}
 			}

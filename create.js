@@ -12,7 +12,7 @@ let record = [];
 function showRecord(){
   console.log(record)
 }
- //setInterval(showRecord,1000)
+ setInterval(showRecord,1000)
 
 // post to backend
 function create(name) {
