@@ -31,6 +31,7 @@ let muteButton = document.getElementById("mute");
 let submitButton = document.getElementById("submitButton");
 let form = document.getElementById("music_name");
 let deleteButton = document.getElementById("deleteButton")
+// delete button
 deleteButton.addEventListener("click",(event) =>{
   if (record.length == 0){
     alert("The notes are empty."); return;
@@ -39,7 +40,7 @@ deleteButton.addEventListener("click",(event) =>{
     delete_note();
   }
 });
-
+//submit button
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
   music_name = form.value;
@@ -52,7 +53,7 @@ submitButton.addEventListener("click", (event) => {
 	create(music_name);
   }
 });
-
+//mute button
 muteButton.addEventListener("click",(event) =>{
   if(s==true){
     muteButton.innerHTML="UNMUTE";
@@ -68,7 +69,7 @@ function updateDisplayText(){
 	recordText.innerHTML = record.join(" ");
   var number_note=document.getElementById("number of note");
   var len = record.length;
-  number_note.innerHTML = `number of note(s): ${len}`;
+  number_note.innerHTML = `number of note(s): ${len}/40`;
 }
 
 /* Piano */
