@@ -1,6 +1,7 @@
 var currentMusicName;
 var currentMusic; // default music
 var jsonMusic; // musics from JSON
+let all_title=[];// all song title from backend
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
@@ -19,6 +20,7 @@ function GetMusicFromJSON(){
 			console.log(jsonMusic);
 			datas.forEach((data) => {
 			console.log(data.name);
+			all_title.push(data.name);
 			var arr = data.notes;
 			arr.forEach((data) => { // get single note from array
 				console.log(data);
@@ -118,20 +120,18 @@ document.getElementById("preview").addEventListener("click", function() {
 
 /* Delete Button */
 document.getElementById("delete").addEventListener("click", function() {
-	fetch("http://158.108.182.8:3002/melody/delete", {
+	fetch(`http://158.108.182.8:3002/melody/delete?title=${currentMusicName}`, {
 		method: "DELETE",
 		headers: {
 		 // "Access-Control-Allow-Origin": "*",
 		 // "Access-Control-Allow-Credentials": true,
-		  "Content-Type": "application/json",
-		},
-		body: JSON.stringify({ name: currentMusicName}),
+		  "Content-Type": "application/json"},
 	  })
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
-		alert(name+` has been deleted!`);
-	window.location.reload(false); 
+		alert(currentMusicName+` has been deleted!`);
+	window.location.reload(); 
 });
 
 /* Events Listener */
@@ -216,16 +216,7 @@ function select(title){
 // Random Music From Hardware
 
 document.getElementById("random").addEventListener("click",function(){
-	fetch("http://158.108.182.8:3002/melody/create", {
-		method: "POST",
-		headers: {
-		 // "Access-Control-Allow-Origin": "*",
-		 // "Access-Control-Allow-Credentials": true,
-		  "Content-Type": "application/json",
-		},
-		body: JSON.stringify({ title: "Random", note: -1 }),
-	  }).then((response) => response.text())
-		.then((result) => console.log(result))
-		.catch((error) => console.log("error", error));
-		alert('Random Music From Harware');
+	ram = Math.floor(Math.random() * all_title.length); 
+	select(all_title[ram]);
+	alert('Random Music From Database');
 });
