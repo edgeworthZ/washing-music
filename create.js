@@ -54,6 +54,9 @@ submitButton.addEventListener("click", (event) => {
 function updateDisplayText(){
 	var recordText = document.getElementById('recordNotes');
 	recordText.innerHTML = record.join(" ");
+  var number_note=document.getElementById("number of note");
+  var len = record.length;
+  number_note.innerHTML = `number of note(s): ${len}`;
 }
 
 /* Piano */
