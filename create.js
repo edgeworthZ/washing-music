@@ -89,16 +89,21 @@ function playSound(note){
 }
 
 function triggerKey(note){
+	if(record.length >= 40){ 
+		alert('You have already input 40 notes!');
+		isDown = false; // reset mouse's behavior
+		return; 
+	}
 	playSound(note);
 	document.getElementById(note).classList.add('active');
 }
 
 var isTypingMusicName;
+var isDown;   // Tracks status of mouse button
 /* Interactions */
 $(document).ready(function(){
   //setInterval(function test(){console.log(isTypingMusicName);},1000)
 
-  var isDown = false;   // Tracks status of mouse button
   $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
     isDown = true;
 	triggerKey(this.id);
