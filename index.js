@@ -4,7 +4,7 @@ var jsonMusic; // musics from JSON
 
 /*Load Data from Backend*/
 function GetMusicFromJSON(){
-	fetch("http://158.108.182.8:50006/find_all",{
+	fetch("http://158.108.182.8:3002/melody/list",{
         method: "GET",
         headers: {
 			//"Access-Control-Allow-Origin": "*",
@@ -13,6 +13,7 @@ function GetMusicFromJSON(){
 			"Content-Type": "application/json"},
     })
 		.then(response => response.json())
+		.then(response => response.result)
 		.then((datas) => {
 			jsonMusic = datas;
 			console.log(jsonMusic);
@@ -29,7 +30,7 @@ function GetMusicFromJSON(){
 			newMusic.draggable = false;
 			newMusic.innerHTML = data.name;
 			doc.appendChild(newMusic);
-			if(data.name == 'Default'){ // Choose default music
+			if(data.title == 'Default'){ // Choose default music
 				currentMusic = data.notes;
 				document.getElementById("musicNotes").innerHTML = currentMusic.join(" ");
 			}
