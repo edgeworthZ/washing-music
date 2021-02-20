@@ -220,7 +220,7 @@ function MusicNotesTypingEffect(text) {
 function TypeName(text) {
     msEl1.innerHTML = text.substr(0, captionLength1++);
     if(captionLength1 < text.length+1) {
-        setTimeout(function(){TypeName(text)}, 50);
+        setTimeout(function(){TypeName(text)}, 10);
     } else {
         captionLength1 = 0;
         text = '';
@@ -230,7 +230,7 @@ function TypeName(text) {
 function TypeNotes(text) {
     msEl2.innerHTML = text.substr(0, captionLength2++);
     if(captionLength2 < text.length+1) {
-        setTimeout(function(){TypeNotes(text)}, 3);
+        setTimeout(function(){TypeNotes(text)}, 4);
     } else {
         captionLength2 = 0;
         text = '';
