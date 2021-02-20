@@ -201,13 +201,18 @@ function deletePressed(evt) {
   }
 }
 
+function ResetTimeOut(){
+	for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
+	timeouts = [];
+}
+
 /* Play Button */
 var isPlaying; // prevent clicking play button again before music end
 var msEl2 = document.getElementById("recordNotes");
 var timeouts = [];
 var playInterval = 500; // 500 ms per note
 document.getElementById("play").addEventListener("click", function() {
-	if(isPlaying) return;
+	if(isPlaying) ResetTimeOut();
 	if(record.length == 0){ alert('The notes are empty.'); return;} 
 	isPlaying = true;
 	var queueMusic = record.slice();
@@ -217,8 +222,7 @@ document.getElementById("play").addEventListener("click", function() {
 	console.log("raw"+rawText);
 		timeouts.push(setTimeout(function(){
 			if(!isPlaying){ // stop music if user changed music and kill all timeouts
-				for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
-				timeouts = []; return;
+				ResetTimeOut();
 			}
 			console.log("Playing Note: "+note);
 			PlaySingleNote(note);

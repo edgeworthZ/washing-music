@@ -89,6 +89,11 @@ window.addEventListener('load', (event) => {
 
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
+function ResetTimeOut(){
+	for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
+	timeouts = [];
+}
+
 /* Play Button */
 var isPlaying; // prevent clicking play button again before music end
 var msEl1 = document.getElementById("musicName");
@@ -96,7 +101,7 @@ var msEl2 = document.getElementById("musicNotes");
 var timeouts = [];
 var playInterval = 500; // 500 ms per note
 document.getElementById("play").addEventListener("click", function() {
-	if(isPlaying) return;
+	if(isPlaying) ResetTimeOut();
 	if(!currentMusic){ alert('Please select a music before pressing this button!'); return;} 
 	isPlaying = true;
 	var queueMusic = currentMusic.slice();
@@ -106,8 +111,7 @@ document.getElementById("play").addEventListener("click", function() {
 	console.log("raw"+rawText);
 		timeouts.push(setTimeout(function(){
 			if(!isPlaying){ // stop music if user changed music and kill all timeouts
-				for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
-				timeouts = []; return;
+				ResetTimeOut();
 			}
 			console.log("Playing Note: "+note);
 			PlaySingleNote(note);
@@ -228,6 +232,7 @@ function select(title){
 }
 // Random Music From Hardware
 document.getElementById("random").addEventListener("click",function(){
+	if(isPlaying) ResetTimeOut();
 	ram = Math.floor(Math.random() * all_title.length);
 	var randomMusicName = all_title[ram];
 	ChooseMusic(randomMusicName);
