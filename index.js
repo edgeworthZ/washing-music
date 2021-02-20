@@ -118,7 +118,7 @@ document.getElementById("preview").addEventListener("click", function() {
 
 /* Delete Button */
 document.getElementById("delete").addEventListener("click", function() {
-	fetch("http://158.108.182.8:50006/delete", {
+	fetch("http://158.108.182.8:3002/melody/delete", {
 		method: "DELETE",
 		headers: {
 		 // "Access-Control-Allow-Origin": "*",
