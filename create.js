@@ -7,14 +7,14 @@ function showRecord(){
 
 // post to backend
 function create(name) {
-	fetch("http://158.108.182.8:50006/create", {
+	fetch("http://158.108.182.8:50006/melody/create", {
 		method: "POST",
 		headers: {
 		 // "Access-Control-Allow-Origin": "*",
 		 // "Access-Control-Allow-Credentials": true,
 		  "Content-Type": "application/json",
 		},
-		body: JSON.stringify({ name: name, notes: record }),
+		body: JSON.stringify({ title: name, note: record }),
 	  })
 		.then((response) => response.text())
 		.then((result) => console.log(result))
