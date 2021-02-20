@@ -134,6 +134,27 @@ function delfunc() {
 	window.location.reload(); 
 }
 
+function GetJSONMusic(musicName){
+	for(var i=0; i<jsonMusic.length;i++) {
+		var entry = jsonMusic[i];
+		if(entry.name == musicName){
+			console.log("Choose Music: "+entry.name+" Notes: "+entry.notes);
+			return jsonMusic[i];
+		}
+	}
+}
+
+function ChooseMusic(musicName){
+	var label = document.getElementById('dropLabel');
+	label.innerHTML = musicName;
+	var obj = GetJSONMusic(musicName);
+	currentMusicName = obj.name;
+	currentMusic = obj.notes;
+	select(currentMusicName);
+	MusicNameTypingEffect(musicName); 
+	MusicNotesTypingEffect(currentMusic.join(" ")); 
+}
+
 /* Events Listener */
 function AddCustomEventListener() {
 	var elements = document.getElementsByClassName('dropdown-item');
@@ -141,20 +162,8 @@ function AddCustomEventListener() {
 		  element.addEventListener('click', (event) => {
 			isPlaying = false; // stop current music if playing
 			//alert(`Clicked ${event.target.innerText}!`);
-			var label = document.getElementById('dropLabel');
 			var musicName = event.target.innerText;
-			label.innerHTML = musicName;
-			for(var i=0; i<jsonMusic.length;i++) {
-				var obj = jsonMusic[i];
-				if(obj.name == musicName){
-					console.log("Choose Music: "+obj.name+" Notes: "+obj.notes);
-					currentMusicName = obj.name;
-					currentMusic = obj.notes;
-					select(currentMusicName);
-				}
-			}
-			MusicNameTypingEffect(musicName); 
-			MusicNotesTypingEffect(currentMusic.join(" ")); 
+			ChooseMusic(musicName);
 		  });
 		});
 }
@@ -218,7 +227,9 @@ function select(title){
 // Random Music From Hardware
 
 document.getElementById("random").addEventListener("click",function(){
-	ram = Math.floor(Math.random() * all_title.length); 
-	select(all_title[ram]);
-	alert('Random Music From Database');
+	ram = Math.floor(Math.random() * all_title.length);
+	var randomMusicName = all_title[ram];
+	ChooseMusic(randomMusicName);
+	select(randomMusicName);
+	//alert('Random Music From Database');
 });
