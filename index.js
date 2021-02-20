@@ -89,13 +89,13 @@ window.addEventListener('load', (event) => {
 
 setTimeout(function(){AddCustomEventListener()}, 500); // 0.5 second delay for fetching
 
-/* Preview Button */
-var isPlaying; // prevent clicking preview button again before music end
+/* Play Button */
+var isPlaying; // prevent clicking play button again before music end
 var msEl1 = document.getElementById("musicName");
 var msEl2 = document.getElementById("musicNotes");
 var timeouts = [];
 var playInterval = 500; // 500 ms per note
-document.getElementById("preview").addEventListener("click", function() {
+document.getElementById("play").addEventListener("click", function() {
 	if(isPlaying) return;
 	if(!currentMusic){ alert('Please select a music before pressing this button!'); return;} 
 	isPlaying = true;

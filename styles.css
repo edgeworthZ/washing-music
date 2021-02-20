@@ -146,7 +146,6 @@ footer.content {
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #e3023a;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -155,7 +154,15 @@ footer.content {
   cursor: pointer;
 }
 
-.dropbtn-blue{
+.dropbtn.red {
+	background-color: #e3023a;
+}
+
+.dropbtn.green {
+	background-color: #008000;
+}
+
+.dropbtn.blue{
 	background-color: #007bff;
 	padding: 8px;
 	padding-right: 1em;

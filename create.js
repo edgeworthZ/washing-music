@@ -33,6 +33,7 @@ let form = document.getElementById("music_name");
 let deleteButton = document.getElementById("deleteButton")
 // delete button
 deleteButton.addEventListener("click",(event) =>{
+	isPlaying = false; // stop preview
   if (record.length == 0){
     alert("The notes are empty."); return;
   }
@@ -42,13 +43,14 @@ deleteButton.addEventListener("click",(event) =>{
 });
 //submit button
 submitButton.addEventListener("click", (event) => {
+  isPlaying = false; // stop preview
   event.preventDefault();
   music_name = form.value;
   form.value = "";
   if(music_name == ""){ 
 	alert(`Please enter music name!`); return;
-  }else if(record.length!=40){
-  alert(`Please enter 40 note`);return;
+  }else if(record.length != 40){
+  alert('Please enter 40 notes.');return;
   }else{
 	create(music_name);
   }
@@ -66,8 +68,13 @@ muteButton.addEventListener("click",(event) =>{
 
 //rest button
 function restbutton(){
-  record.push('_');
-  updateDisplayText();
+	isPlaying = false; // stop preview
+	if(record.length >= 40){ 
+		alert('You have already input 40 notes!');
+		isDown = false; return;  // reset mouse's behavior
+	}
+	record.push('_');
+	updateDisplayText();
 }
 
 function updateDisplayText(){
@@ -89,10 +96,10 @@ function playSound(note){
 }
 
 function triggerKey(note){
+	isPlaying = false; // stop preview
 	if(record.length >= 40){ 
 		alert('You have already input 40 notes!');
-		isDown = false; // reset mouse's behavior
-		return; 
+		isDown = false; return;  // reset mouse's behavior
 	}
 	playSound(note);
 	document.getElementById(note).classList.add('active');
@@ -188,7 +195,46 @@ function checkKeyPressed(evt) {
 window.addEventListener("keydown",deletePressed, false)
 function deletePressed(evt) {
   if (evt.keyCode == '8'){
+	  isPlaying = false; // stop preview
 	if(isTypingMusicName) return;
     delete_note();
   }
+}
+
+/* Play Button */
+var isPlaying; // prevent clicking play button again before music end
+var msEl2 = document.getElementById("recordNotes");
+var timeouts = [];
+var playInterval = 500; // 500 ms per note
+document.getElementById("play").addEventListener("click", function() {
+	if(isPlaying) return;
+	if(record.length == 0){ alert('The notes are empty.'); return;} 
+	isPlaying = true;
+	var queueMusic = record.slice();
+	var rawText = queueMusic.join(" "); //reset notes
+	var playIndex = 0;
+	queueMusic.forEach((note, i) => { // get single note from array
+	console.log("raw"+rawText);
+		timeouts.push(setTimeout(function(){
+			if(!isPlaying){ // stop music if user changed music and kill all timeouts
+				for (var j = 0; j < timeouts.length; j++) clearTimeout(timeouts[j]);
+				timeouts = []; return;
+			}
+			console.log("Playing Note: "+note);
+			PlaySingleNote(note);
+			// change note's color while playing
+			playIndex += (note.length+1);
+			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,playIndex)+'</span>'+rawText.substr(playIndex,rawText.length);
+			if(i == queueMusic.length-1) isPlaying = false;
+		}, i * playInterval)); // i is needed for proper foreach delay
+	});
+});
+
+function PlaySingleNote(note){
+	if(!s) return;
+	if(note!='_'){
+		var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
+		audio.currentTime = 0;
+		audio.play();
+	}
 }
