@@ -4,7 +4,7 @@ let s=true;
 function showRecord(){
   console.log(record)
 }
- setInterval(showRecord,1000)
+//setInterval(showRecord,1000)
 
 // post to backend
 function create(name) {
@@ -31,6 +31,7 @@ let muteButton = document.getElementById("mute");
 let submitButton = document.getElementById("submitButton");
 let form = document.getElementById("music_name");
 let deleteButton = document.getElementById("deleteButton")
+
 // delete button
 deleteButton.addEventListener("click",(event) =>{
 	isPlaying = false; // stop preview
@@ -41,6 +42,7 @@ deleteButton.addEventListener("click",(event) =>{
     delete_note();
   }
 });
+
 //submit button
 submitButton.addEventListener("click", (event) => {
   isPlaying = false; // stop preview
@@ -55,6 +57,7 @@ submitButton.addEventListener("click", (event) => {
 	create(music_name);
   }
 });
+
 //mute button
 muteButton.addEventListener("click",(event) =>{
   if(s==true){
@@ -107,9 +110,9 @@ function triggerKey(note){
 
 var isTypingMusicName;
 var isDown;   // Tracks status of mouse button
+
 /* Interactions */
 $(document).ready(function(){
-  //setInterval(function test(){console.log(isTypingMusicName);},1000)
 
   $(".white,.black").mousedown(function() { // play sound when mousedown on a key & change active class
     isDown = true;
@@ -133,7 +136,6 @@ $(document).ready(function(){
 	var container = jQuery('#music_name');
 	if(!container.is(e.target)){
 		isTypingMusicName = false;
-		//console.log('Click Outside TextBox!');
 	}
   });
   /* Input Name */

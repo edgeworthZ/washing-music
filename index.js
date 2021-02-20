@@ -3,7 +3,7 @@ var currentMusic; // default music
 var jsonMusic; // musics from JSON
 let all_title=[];// all song title from backend
 
-/*Load Data from Backend*/
+/*Load Musics from Backend*/
 function GetMusicFromJSON(){
 	fetch("http://158.108.182.8:3002/melody/list",{
         method: "GET",
@@ -38,6 +38,24 @@ function GetMusicFromJSON(){
 			}
 		  });
         });
+}
+
+/*Load Count from Backend*/
+function GetCount(){
+	fetch("http://158.108.182.8:3002/count",{
+        method: "GET",
+        headers: {
+			//"Access-Control-Allow-Origin": "*",
+			//"Access-Control-Allow-Methods": "*",
+			//"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"},
+    })
+		.then(response => response.json())
+		.then(data => {
+			var total = data.count;
+			var reportText = document.getElementById('countReport');
+			reportText.innerHTML = '~ Total Hand Washed: '+'<span style="color: #8CEF74;font-weight:bold;font-size:120%;">'+total+'</span> ~';
+		});
 }
 
 /*Title Wave Effect*/
@@ -84,6 +102,7 @@ window.onclick = function(event) {
 window.addEventListener('load', (event) => {
 	console.log('page is fully loaded');
 	GetMusicFromJSON();
+	GetCount();
 	AnimateText();
 });
 
@@ -182,7 +201,6 @@ var captionLength2 = 0;
 var musicName = '';
 
 function PlaySingleNote(note){
-    //var audio = document.getElementById(note);
 	if(note!='_'){
 		var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
 		audio.currentTime = 0;
@@ -237,5 +255,4 @@ document.getElementById("random").addEventListener("click",function(){
 	var randomMusicName = all_title[ram];
 	ChooseMusic(randomMusicName);
 	select(randomMusicName);
-	//alert('Random Music From Database');
 });

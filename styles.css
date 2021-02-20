@@ -310,3 +310,7 @@ ul li:last-child {
   overflow-y: scroll;
   padding-right:0 !important;
 }
+
+.modal-backdrop {
+   background-color: red;
+}
