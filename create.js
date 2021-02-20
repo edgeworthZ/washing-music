@@ -108,19 +108,56 @@ $(document).ready(function(){
   
 });
 //Sample Key pressed (fix and mapping later)
+function keypressNote(note){
+  triggerKey(note)
+  setTimeout(() => {
+  document.getElementById(note).classList.remove('active');
+  }, 100);
+}
 window.addEventListener("keydown", checkKeyPressed, false);
-
-function checkKeyPressed(evt,note,key_code) {
+function checkKeyPressed(evt) {
 	if(isTypingMusicName) return; // prevent recording a new note while typing music name
-    if (evt.keyCode == "65") {
-        triggerKey('f4')
-    }
+    if (evt.keyCode == "81") {keypressNote('f3')};
+    if (evt.keyCode == "50") {keypressNote('f-3')};
+    if (evt.keyCode == "87") {keypressNote('g3')};
+    if (evt.keyCode == "51") {keypressNote('g-3')};
+    if (evt.keyCode == "69") {keypressNote('a3')};
+    if (evt.keyCode == "52") {keypressNote('a-3')};
+    if (evt.keyCode == "82") {keypressNote('b3')};
+    if (evt.keyCode == "84") {keypressNote('c4')};
+    if (evt.keyCode == "54") {keypressNote('c-4')};
+    if (evt.keyCode == "89") {keypressNote('d4')};
+    if (evt.keyCode == "55") {keypressNote('d-4')};
+    if (evt.keyCode == "85") {keypressNote('e4')};
+    if (evt.keyCode == "73") {keypressNote('f4')};
+    if (evt.keyCode == "57") {keypressNote('f-4')};
+    if (evt.keyCode == "79") {keypressNote('g4')};
+    if (evt.keyCode == "48") {keypressNote('g-4')};
+    if (evt.keyCode == "80") {keypressNote('a4')};
+    if (evt.keyCode == "189") {keypressNote('a-4')};
+    if (evt.keyCode == "219") {keypressNote('b4')};
+    if (evt.keyCode == "90") {keypressNote('c5')};
+    if (evt.keyCode == "83") {keypressNote('c-5')};
+    if (evt.keyCode == "88") {keypressNote('d5')};
+    if (evt.keyCode == "68") {keypressNote('d-5')};
+    if (evt.keyCode == "67") {keypressNote('e5')};
+    if (evt.keyCode == "86") {keypressNote('f5')};
+    if (evt.keyCode == "71") {keypressNote('f-5')};
+    if (evt.keyCode == "66") {keypressNote('g5')};
+    if (evt.keyCode == "72") {keypressNote('g-5')};
+    if (evt.keyCode == "78") {keypressNote('a5')};
+    if (evt.keyCode == "74") {keypressNote('a-5')};
+    if (evt.keyCode == "77") {keypressNote('b5')};
+    if (evt.keyCode == "188") {keypressNote('c6')};
+    if (evt.keyCode == "76") {keypressNote('c-6')};
+    if (evt.keyCode == "190") {keypressNote('d6')};
+    if (evt.keyCode == "186") {keypressNote('d-6')};
+    if (evt.keyCode == "191") {keypressNote('e6')};
 }
 
 window.addEventListener("keydown",deletePressed, false)
-function deletePressed(evt,note,) {
+function deletePressed(evt) {
   if (evt.keyCode == '8'){
     delete_note();
   }
 }
-
