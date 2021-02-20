@@ -1,9 +1,9 @@
 /* Background Layer & Animation (Hue-Rotate) */
-header.bg {
+header.bg-back {
   position: fixed;
   left: 0;
   right: 0;
-  z-index: -1;
+  z-index: -2;
   padding-top: 10.5rem;
   padding-bottom: 60rem;
   display: block;
@@ -14,7 +14,37 @@ header.bg {
   background-size: cover;
 }
 
-header.bg.animated {
+header.bg-front {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  padding-top: 10.5rem;
+  padding-bottom: 60rem;
+ 
+}
+
+header.bg-front.a-animated {
+  background: url("shining.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  -webkit-animation: fadeloop 6s cubic-bezier(0,0.1,1,1) infinite;
+  animation: fadeloop 6s cubic-bezier(0,0.1,1,1) infinite;
+}
+
+header.bg-front.b-animated {
+  background: url("shining-2.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  -webkit-animation: fadeloop 6s 1s cubic-bezier(0,0.1,1,1) infinite;
+  animation: fadeloop 6s 1s cubic-bezier(0,0.1,1,1) infinite;
+}
+
+header.bg-back.animated {
   -webkit-animation: filter-animation 72s infinite;
   animation: filter-animation 72s infinite;
 }
@@ -29,6 +59,22 @@ header.bg.animated {
   0% { filter: hue-rotate(0deg); }
   50% { filter: hue-rotate(360deg); }
   100% { filter: hue-rotate(0deg); }
+}
+
+@-webkit-keyframes fadeloop {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeloop {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+header.bg2-animated h1 {
+  font-family: sans-serif;
 }
 
 /* Content */
@@ -230,7 +276,7 @@ ul li:last-child {
 }
 
 .piano{
-  margin-left: 50px;
+  margin-left: 225px;
   margin-top: 50px;
 }
 

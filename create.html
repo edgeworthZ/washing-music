@@ -4,10 +4,11 @@
   <title>Create New Music</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- Bootstrap -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -17,7 +18,9 @@
 </head>
 <body>
 <!--Background Layer-->
-<header class="bg animated"></header>
+<header class="bg-back animated"></header>
+<header class="bg-front a-animated"></header>
+<header class="bg-front b-animated"></header>
 <!--Content-->
 <header class="mycontent">
 	<div class="mycontent-subheading">Music Name</div>
@@ -25,11 +28,13 @@
     <form action="" id="add_name">
         <input type="text" class="mycontent-heading text-uppercase" name="music_name" id="music_name" placeholder="New Music #1"/>
     </form>
+	</br><br>
 	<div class="mycontent-subheading-bold" id="recordNotes"></div>
+	</br><br>
 	<a class="btn btn-primary btn-xl text-uppercase" href="index.html" role="button">Back</a>
 	<a class="btn btn-primary btn-xl text-uppercase" id="submitButton" href="#" role="button">Submit</a>
 	<a class="btn btn-primary pull-right btn-xl text-uppercase" href="#" role="button" onclick="return false" id = "deleteButton">Delete</a>
-
+	<br></br><br></br>
   <!-- Piano -->
   <!-- Keys -->
   <div class = "piano">
