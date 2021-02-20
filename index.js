@@ -94,7 +94,7 @@ var isPlaying; // prevent clicking preview button again before music end
 var msEl1 = document.getElementById("musicName");
 var msEl2 = document.getElementById("musicNotes");
 var timeouts = [];
-var playInterval = 555;
+var playInterval = 500; // 500 ms per note
 document.getElementById("preview").addEventListener("click", function() {
 	if(isPlaying) return;
 	if(!currentMusic){ alert('Please select a music before pressing this button!'); return;} 
@@ -115,7 +115,7 @@ document.getElementById("preview").addEventListener("click", function() {
 			playIndex += (note.length+1);
 			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,playIndex)+'</span>'+rawText.substr(playIndex,rawText.length);
 			if(i == queueMusic.length-1) isPlaying = false;
-		}, i * 750)); // i is needed for proper foreach delay
+		}, i * playInterval)); // i is needed for proper foreach delay
 	});
 });
 
@@ -227,7 +227,6 @@ function select(title){
 
 }
 // Random Music From Hardware
-
 document.getElementById("random").addEventListener("click",function(){
 	ram = Math.floor(Math.random() * all_title.length);
 	var randomMusicName = all_title[ram];
