@@ -54,7 +54,7 @@ function GetCount(){
 		.then(data => {
 			var total = data.count;
 			var reportText = document.getElementById('countReport');
-			reportText.innerHTML = '~ Total Hand Washed: '+'<span style="color: #8CEF74;font-weight:bold;font-size:120%;">'+total+'</span> ~';
+			reportText.innerHTML = 'Total Hand Washed: '+'<span style="color: #8CEF74;font-weight:bold;font-size:120%;">'+total+'</span>';
 		});
 }
 
