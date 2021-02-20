@@ -202,7 +202,7 @@ var musicName = '';
 
 function PlaySingleNote(note){
 	if(note!='_'){
-		var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
+		var audio = new Audio('assets/notes/'+note.toLowerCase()+'.ogg');
 		audio.currentTime = 0;
 		audio.play();
 	}

@@ -90,7 +90,7 @@ function updateDisplayText(){
 
 /* Piano */
 function playSound(note){
-	sound = new Audio('notes/'+note+'.ogg');
+	sound = new Audio('assets/notes/'+note+'.ogg');
   if(s==true){
 	  sound.play()
   } 
@@ -239,7 +239,7 @@ document.getElementById("play").addEventListener("click", function() {
 function PlaySingleNote(note){
 	if(!s) return;
 	if(note!='_'){
-		var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
+		var audio = new Audio('assets/notes/'+note.toLowerCase()+'.ogg');
 		audio.currentTime = 0;
 		audio.play();
 	}
