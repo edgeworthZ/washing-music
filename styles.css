@@ -304,3 +304,9 @@ ul li:last-child {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.modal-open {
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-right:0 !important;
+}

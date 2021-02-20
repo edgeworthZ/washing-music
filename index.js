@@ -136,8 +136,8 @@ function delfunc() {
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
-		alert(currentMusicName+` has been deleted!`);
-	window.location.reload(); 
+		//alert(currentMusicName+` has been deleted!`);
+		setTimeout(function(){window.location.reload();},500)
 }
 
 function GetJSONMusic(musicName){

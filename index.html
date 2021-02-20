@@ -18,6 +18,26 @@
   <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
+<!-- Delete Button Warning -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this music? This action cannot be undone and you will be unable to recovery any data.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <a type="button" class="btn btn-danger" data-dismiss="modal" onclick="delfunc()">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
 <!--Background Layer-->
 <header class="bg-back animated"></header>
 <header class="bg-front a-animated"></header>
@@ -44,7 +64,7 @@
 	<a class="btn btn-success btn-xl text-uppercase" id="play">Play</a>
 	<a class="btn btn-primary btn-xl text-uppercase" id="random">Random</a>
 	<a class="btn btn-primary btn-xl text-uppercase" href="create.html">Create New</a>
-	<a class="btn btn-danger btn-xl text-uppercase" id="delete" onclick="setTimeout(delfunc,2000)">Delete</a>
+	<a class="btn btn-danger btn-xl text-uppercase" id="delete" data-toggle="modal" data-target="#modalCenter">Delete</a>
 </header>
 <!--Footer-->
 <footer class="content">
