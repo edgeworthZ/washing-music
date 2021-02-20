@@ -117,3 +117,10 @@ function checkKeyPressed(evt,note,key_code) {
     }
 }
 
+window.addEventListener("keydown",deletePressed, false)
+function deletePressed(evt,note,) {
+  if (evt.keyCode == '8'){
+    delete_note();
+  }
+}
+
