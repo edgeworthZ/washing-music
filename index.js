@@ -213,3 +213,19 @@ function select(title){
 })
 
 }
+// Random Music From Hardware
+
+document.getElementById("random").addEventListener("click",function(){
+	fetch("http://158.108.182.8:3002/melody/create", {
+		method: "POST",
+		headers: {
+		 // "Access-Control-Allow-Origin": "*",
+		 // "Access-Control-Allow-Credentials": true,
+		  "Content-Type": "application/json",
+		},
+		body: JSON.stringify({ title: "Random", note: -1 }),
+	  }).then((response) => response.text())
+		.then((result) => console.log(result))
+		.catch((error) => console.log("error", error));
+		alert('Random Music From Harware');
+});
