@@ -7,7 +7,7 @@ function showRecord(){
 
 // post to backend
 function create(name) {
-	fetch("http://158.108.182.8:50006/melody/create", {
+	fetch("http://158.108.182.8:3000/melody/create", {
 		method: "POST",
 		headers: {
 		 // "Access-Control-Allow-Origin": "*",
