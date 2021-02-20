@@ -158,6 +158,7 @@ function checkKeyPressed(evt) {
 window.addEventListener("keydown",deletePressed, false)
 function deletePressed(evt) {
   if (evt.keyCode == '8'){
+	if(isTypingMusicName) return;
     delete_note();
   }
 }
