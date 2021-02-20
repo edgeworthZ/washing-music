@@ -119,7 +119,7 @@ document.getElementById("preview").addEventListener("click", function() {
 });
 
 /* Delete Button */
-document.getElementById("delete").addEventListener("click", function() {
+function delfunc() {
 	fetch(`http://158.108.182.8:3002/melody/delete?title=${currentMusicName}`, {
 		method: "DELETE",
 		headers: {
@@ -132,7 +132,7 @@ document.getElementById("delete").addEventListener("click", function() {
 		.catch((error) => console.log("error", error));
 		alert(currentMusicName+` has been deleted!`);
 	window.location.reload(); 
-});
+}
 
 /* Events Listener */
 function AddCustomEventListener() {
