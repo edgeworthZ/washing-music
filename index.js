@@ -30,7 +30,7 @@ function GetMusicFromJSON(){
 			newMusic.draggable = false;
 			newMusic.innerHTML = data.name;
 			doc.appendChild(newMusic);
-			if(data.title == 'Default'){ // Choose default music
+			if(data.name == 'Default'){ // Choose default music
 				currentMusic = data.notes;
 				document.getElementById("musicNotes").innerHTML = currentMusic.join(" ");
 			}
@@ -150,6 +150,7 @@ function AddCustomEventListener() {
 					console.log("Choose Music: "+obj.name+" Notes: "+obj.notes);
 					currentMusicName = obj.name;
 					currentMusic = obj.notes;
+					select(currentMusicName);
 				}
 			}
 			MusicNameTypingEffect(musicName); 
@@ -199,4 +200,16 @@ function TypeNotes(text) {
         captionLength2 = 0;
         text = '';
     }
+}
+
+function select(title){
+	fetch(`http://158.108.182.8:3002/melody/select?title=${title}`,{
+	method: "PATCH",
+	headers: {
+		//"Access-Control-Allow-Origin": "*",
+		//"Access-Control-Allow-Methods": "*",
+		//"Access-Control-Allow-Credentials": true,
+		"Content-Type": "application/json"},
+})
+
 }
