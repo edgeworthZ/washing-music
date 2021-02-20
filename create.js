@@ -64,6 +64,12 @@ muteButton.addEventListener("click",(event) =>{
   }
 });
 
+//rest button
+function restbutton(){
+  record.push('_');
+  updateDisplayText();
+}
+
 function updateDisplayText(){
 	var recordText = document.getElementById('recordNotes');
 	recordText.innerHTML = record.join(" ");
@@ -171,6 +177,7 @@ function checkKeyPressed(evt) {
     if (evt.keyCode == "190") {keypressNote('d6')};
     if (evt.keyCode == "186") {keypressNote('d-6')};
     if (evt.keyCode == "191") {keypressNote('e6')};
+    if (evt.keyCode == "32") {restbutton()};
 }
 
 window.addEventListener("keydown",deletePressed, false)
