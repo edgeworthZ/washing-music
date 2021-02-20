@@ -111,7 +111,7 @@ document.getElementById("play").addEventListener("click", function() {
 	console.log("raw"+rawText);
 		timeouts.push(setTimeout(function(){
 			if(!isPlaying){ // stop music if user changed music and kill all timeouts
-				ResetTimeOut();
+				ResetTimeOut(); return;
 			}
 			console.log("Playing Note: "+note);
 			PlaySingleNote(note);
