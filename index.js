@@ -97,6 +97,7 @@ var timeouts = [];
 var playInterval = 555;
 document.getElementById("preview").addEventListener("click", function() {
 	if(isPlaying) return;
+	if(!currentMusic){ alert('Please select a music before pressing this button!'); return;} 
 	isPlaying = true;
 	var queueMusic = currentMusic.slice();
 	var rawText = queueMusic.join(" "); //reset notes
@@ -109,7 +110,7 @@ document.getElementById("preview").addEventListener("click", function() {
 				timeouts = []; return;
 			}
 			console.log("Playing Note: "+note);
-			if(note != "0") PlaySingleNote(note);
+			PlaySingleNote(note);
 			// change note's color while playing
 			playIndex += (note.length+1);
 			msEl2.innerHTML ='<span style="color: #f73c02">'+rawText.substr(0,playIndex)+'</span>'+rawText.substr(playIndex,rawText.length);
@@ -120,6 +121,7 @@ document.getElementById("preview").addEventListener("click", function() {
 
 /* Delete Button */
 function delfunc() {
+	if(!currentMusic){ alert('Please select a music before pressing this button!'); return;} 
 	fetch(`http://158.108.182.8:3002/melody/delete?title=${currentMusicName}`, {
 		method: "DELETE",
 		headers: {
