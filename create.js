@@ -44,6 +44,8 @@ submitButton.addEventListener("click", (event) => {
   form.value = "";
   if(music_name == ""){ 
 	alert(`Please enter music name!`); return;
+  }else if(record.length!=20){
+  alert(`Please enter 20 note`);return;
   }else{
 	create(music_name);
   }
