@@ -1,4 +1,5 @@
 let record = [];
+let s=true;
 
 function showRecord(){
   console.log(record)
@@ -26,6 +27,7 @@ function delete_note(){
   updateDisplayText();
 }
 
+let muteButton = document.getElementById("mute");
 let submitButton = document.getElementById("submitButton");
 let form = document.getElementById("music_name");
 let deleteButton = document.getElementById("deleteButton")
@@ -51,6 +53,16 @@ submitButton.addEventListener("click", (event) => {
   }
 });
 
+muteButton.addEventListener("click",(event) =>{
+  if(s==true){
+    muteButton.innerHTML="UNMUTE";
+    s=false;
+  }else{
+    muteButton.innerHTML="MUTE";
+    s=true;
+  }
+});
+
 function updateDisplayText(){
 	var recordText = document.getElementById('recordNotes');
 	recordText.innerHTML = record.join(" ");
@@ -62,8 +74,10 @@ function updateDisplayText(){
 /* Piano */
 function playSound(note){
 	sound = new Audio('notes/'+note+'.ogg');
-	sound.play() 
-    record.push(note.toUpperCase())
+  if(s==true){
+	  sound.play()
+  } 
+  record.push(note.toUpperCase())
 	updateDisplayText();
 }
 
