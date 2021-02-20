@@ -168,9 +168,11 @@ var musicName = '';
 
 function PlaySingleNote(note){
     //var audio = document.getElementById(note);
-	var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
-    audio.currentTime = 0;
-    audio.play();
+	if(note!='_'){
+		var audio = new Audio('notes/'+note.toLowerCase()+'.ogg');
+		audio.currentTime = 0;
+		audio.play();
+	}
 }
 
 
