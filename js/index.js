@@ -106,7 +106,7 @@ window.onclick = function(event) {
 window.addEventListener('load', (event) => {
 	console.log('page is fully loaded');
 	GetMusicFromJSON();
-	GetCount();
+	// GetCount();
 	AnimateText();
 });
 
@@ -260,3 +260,9 @@ document.getElementById("random").addEventListener("click",function(){
 	ChooseMusic(randomMusicName);
 	select(randomMusicName);
 });
+
+
+if(all_title==[]){
+	alert("null");
+
+}
