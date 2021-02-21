@@ -23,7 +23,15 @@ git clone https://github.com/lazycodex/xyz/
 
 - Select the music from the index page and press *Play* button. After you press the music will be play on the machine and start to count your hand washing.
 
+<p align = "center">
+    <img width="900" height="auto" src="assets/imgs/template3.png" />
+</p>
+
 - Another choice if you don't like our default music. You can create the new one at create page. You need to fill up 40 notes otherwise it will not match our requirement since we play double speed and 40 notes is suitable for that.
+
+<p align = "center">
+    <img width="900" height="auto" src="assets/imgs/template2.png" />
+</p>
 
 - After created you need to press the submit button it will redirect you to index page and then you can follow our first guideline.
 
