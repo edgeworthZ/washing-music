@@ -41,26 +41,26 @@ function GetMusicFromJSON(){
 }
 
 /*Load Count from Backend*/
-function GetCount(){
-	fetch("http://158.108.182.8:3002/count",{
-        method: "GET",
-        headers: {
-			//"Access-Control-Allow-Origin": "*",
-			//"Access-Control-Allow-Methods": "*",
-			//"Access-Control-Allow-Credentials": true,
-			"Content-Type": "application/json"},
-    })
-		.then(response => response.json())
-		.then(data => {
-			var total = data.count;
-			var reportText = document.getElementById('countReport');
-			reportText.innerHTML = 'Total Hand Washed: '+'<span style="color: #8CEF74;font-weight:bold;font-size:120%;">'+total+'</span>';
-		});
-}
+// function GetCount(){
+// 	fetch("http://158.108.182.8:3002/count",{
+//         method: "GET",
+//         headers: {
+// 			//"Access-Control-Allow-Origin": "*",
+// 			//"Access-Control-Allow-Methods": "*",
+// 			//"Access-Control-Allow-Credentials": true,
+// 			"Content-Type": "application/json"},
+//     })
+// 		.then(response => response.json())
+// 		.then(data => {
+// 			var total = data.count;
+// 			var reportText = document.getElementById('countReport');
+// 			reportText.innerHTML = 'Total Hand Washed: '+'<span style="color: #8CEF74;font-weight:bold;font-size:120%;">'+total+'</span>';
+// 		});
+// }
 
-setInterval(() => {
-    GetCount();
-}, 5000);
+// setInterval(() => {
+//     GetCount();
+// }, 5000);
 
 /*Title Wave Effect*/
 function AnimateText(){
