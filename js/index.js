@@ -260,9 +260,3 @@ document.getElementById("random").addEventListener("click",function(){
 	ChooseMusic(randomMusicName);
 	select(randomMusicName);
 });
-
-
-if(all_title==[]){
-	alert("null");
-
-}
