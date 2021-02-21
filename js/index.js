@@ -58,6 +58,10 @@ function GetCount(){
 		});
 }
 
+setInterval(() => {
+    GetCount();
+}, 5000);
+
 /*Title Wave Effect*/
 function AnimateText(){
 	// Wrap every letter in a span
